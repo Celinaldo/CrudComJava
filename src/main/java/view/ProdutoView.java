@@ -5,11 +5,23 @@
  */
 package view;
 
+import com.mycompany.crudjava.dao.ProdutoDao;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import model.Produto;
+import table.ProdutoTableModel;
+
 /**
  *
  * @author jr
  */
 public class ProdutoView extends javax.swing.JFrame {
+    
+    Produto pro = new Produto();
+    ProdutoDao prd = new ProdutoDao();
 
     /**
      * Creates new form ProdutoView
@@ -17,6 +29,7 @@ public class ProdutoView extends javax.swing.JFrame {
     public ProdutoView() {
         initComponents();
         setLocationRelativeTo(null);
+        tbProdutos.setModel(new ProdutoTableModel(new ProdutoDao().listarProdutos()));
     }
 
     /**
@@ -28,29 +41,314 @@ public class ProdutoView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Produto");
-        setResizable(false);
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        tfCodigo = new javax.swing.JTextField();
+        tfDescricao = new javax.swing.JTextField();
+        tfPreco = new javax.swing.JTextField();
+        btSalvar = new javax.swing.JButton();
+        btExcluir = new javax.swing.JButton();
+        btLimpar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbProdutos = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        tfPesquisa = new javax.swing.JTextField();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Código:");
+
+        jLabel2.setText("Descrição:");
+
+        jLabel3.setText("Preço:");
+
+        tfCodigo.setEditable(false);
+        tfCodigo.setBackground(new java.awt.Color(189, 17, 17));
+        tfCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfCodigoActionPerformed(evt);
+            }
+        });
+
+        btSalvar.setText("Salvar");
+        btSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btSalvarMouseClicked(evt);
+            }
+        });
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
+
+        btExcluir.setText("Excluir");
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
+
+        btLimpar.setText("Limpar");
+
+        tbProdutos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tbProdutos);
+
+        jLabel4.setText("Pesquisar(Descrição):");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                            .addComponent(tfDescricao)
+                            .addComponent(tfCodigo)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btLimpar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btExcluir)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btSalvar))
+                            .addComponent(tfPesquisa)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(0, 518, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btSalvar)
+                    .addComponent(btExcluir)
+                    .addComponent(btLimpar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void tfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCodigoActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        if(tfDescricao.getText().equals("")){
+            pro.setDescricao_produto(tfDescricao.getText());
+            pro.setPreco_produto(Double.parseDouble(tfPreco.getText()));
+            prd.inserir(pro);
+        }else{
+            pro.setDescricao_produto(tfDescricao.getText());
+            pro.setPreco_produto(Double.parseDouble(tfDescricao.getText()));
+            pro.setCodigo_produto(Integer.parseInt(tfCodigo.getText()));
+            prd.alterar(pro);    
+        }
+        tbProdutos.setModel(new ProdutoTableModel(new ProdutoDao().listarProdutos()));
+        tfCodigo.setText(" ");
+        tfDescricao.setText(" ");
+        tfPreco.setText(" ");
+        tfPesquisa.setText("");
+        
+    }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void btSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btSalvarMouseClicked
+        if(tfDescricao.getText().equals("")){
+            pro.setDescricao_produto(tfDescricao.getText());
+            pro.setPreco_produto(Double.parseDouble(tfPreco.getText()));
+            prd.inserir(pro);
+        }else{
+            pro.setDescricao_produto(tfDescricao.getText());
+            pro.setPreco_produto(Double.parseDouble(tfDescricao.getText()));
+            pro.setCodigo_produto(Integer.parseInt(tfCodigo.getText()));
+            prd.alterar(pro);    
+        }
+        tbProdutos.setModel(new ProdutoTableModel(new ProdutoDao().listarProdutos()));
+        tfCodigo.setText(" ");
+        tfDescricao.setText(" ");
+        tfPreco.setText(" ");
+        tfPesquisa.setText("");
+    }//GEN-LAST:event_btSalvarMouseClicked
+
+    public Produto getPro() {
+        return pro;
+    }
+
+    public void setPro(Produto pro) {
+        this.pro = pro;
+    }
+
+    public ProdutoDao getPrd() {
+        return prd;
+    }
+
+    public void setPrd(ProdutoDao prd) {
+        this.prd = prd;
+    }
+
+    public JButton getBtExcluir() {
+        return btExcluir;
+    }
+
+    public void setBtExcluir(JButton btExcluir) {
+        this.btExcluir = btExcluir;
+    }
+
+    public JButton getBtLimpar() {
+        return btLimpar;
+    }
+
+    public void setBtLimpar(JButton btLimpar) {
+        this.btLimpar = btLimpar;
+    }
+
+    public JButton getBtSalvar() {
+        return btSalvar;
+    }
+
+    public void setBtSalvar(JButton btSalvar) {
+        this.btSalvar = btSalvar;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JTable getTbProdutos() {
+        return tbProdutos;
+    }
+
+    public void setTbProdutos(JTable tbProdutos) {
+        this.tbProdutos = tbProdutos;
+    }
+
+    public JTextField getTfCodigo() {
+        return tfCodigo;
+    }
+
+    public void setTfCodigo(JTextField tfCodigo) {
+        this.tfCodigo = tfCodigo;
+    }
+
+    public JTextField getTfDescricao() {
+        return tfDescricao;
+    }
+
+    public void setTfDescricao(JTextField tfDescricao) {
+        this.tfDescricao = tfDescricao;
+    }
+
+    public JTextField getTfPesquisa() {
+        return tfPesquisa;
+    }
+
+    public void setTfPesquisa(JTextField tfPesquisa) {
+        this.tfPesquisa = tfPesquisa;
+    }
+
+    public JTextField getTfPreco() {
+        return tfPreco;
+    }
+
+    public void setTfPreco(JTextField tfPreco) {
+        this.tfPreco = tfPreco;
+    }
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btExcluir;
+    private javax.swing.JButton btLimpar;
+    private javax.swing.JButton btSalvar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbProdutos;
+    private javax.swing.JTextField tfCodigo;
+    private javax.swing.JTextField tfDescricao;
+    private javax.swing.JTextField tfPesquisa;
+    private javax.swing.JTextField tfPreco;
     // End of variables declaration//GEN-END:variables
 }
